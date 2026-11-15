@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Ghép Bìa MV Ca Nhạc Chuyên Nghiệp — Tác giả: Trịnh Thị An</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .top-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .author-badge-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(30, 20, 56, 0.9), rgba(46, 29, 90, 0.9));
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
+    .author-badge-card .author-name {
+      color: #fcd34d;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .author-badge-card .author-zalo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .author-badge-card .author-zalo-btn:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+    .online-tag {
+      font-size: 12px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Navigation & Author Bar -->
+    <div class="top-nav-bar">
+      <div class="author-badge-card">
+        <span class="author-name">👤 Tác giả: <strong>Trịnh Thị An</strong></span>
+        <a href="https://zalo.me/0834133344" target="_blank" rel="noopener" class="author-zalo-btn">
+          <span>💬 Zalo: 0834 133 344</span>
+        </a>
+      </div>
+
+      <span class="online-tag">🌐 Web Studio Trực Tuyến — Dùng Trên Mọi Thiết Bị</span>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-badge">
+        <span class="icon-music">🎵</span>
+        <span>STUDIO MV PRO — TRỊNH THỊ AN</span>
+      </div>
+      <h1 class="main-title">ỨNG DỤNG GHÉP BÌA &amp; MV CA NHẠC</h1>
+      <p class="subtitle">Tạo MV ca nhạc hoàn thiện từ ảnh bìa và video có sẵn — Bìa chuyển động nốt nhạc bay, máy bay nghệ thuật chỉ với 1 nút bấm.</p>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-grid">
+      <!-- Left Column: Uploads & Controls -->
+      <section class="controls-panel">
+        
+        <!-- Step 1: Upload Cards Grid -->
+        <div class="upload-grid">
+          <!-- Card 1: Cover Image Upload -->
+          <div class="upload-card" id="coverDropZone">
+            <div class="card-header">
+              <span class="step-num">1</span>
+              <h3>📸 Đưa Trang Bìa Lên</h3>
+            </div>
+            <div class="drop-content" id="coverEmptyState">
+              <div class="upload-icon">🖼️</div>
+              <p class="drop-text">Kéo thả ảnh bìa vào đây hoặc</p>
+              <button type="button" class="btn-select" id="btnSelectCover">📂 Chọn Ảnh Bìa</button>
+              <span class="file-hint">Hỗ trợ JPG, PNG, WEBP, JPEG</span>
+            </div>
+            <div class="file-preview-box hidden" id="coverPreviewBox">
+              <img id="coverThumbnail" src="" alt="Ảnh bìa">
+              <div class="file-details">
+                <span class="file-name" id="coverFileName">anh_bia.jpg</span>
+                <button type="button" class="btn-change" id="btnChangeCover">Thay ảnh khác</button>
+              </div>
+            </div>
+            <input type="file" id="coverFileInput" accept="image/*" class="visually-hidden">
+          </div>
+
+          <!-- Card 2: Music Video Upload -->
+          <div class="upload-card" id="mvDropZone">
+            <div class="card-header">
+              <span class="step-num">2</span>
+              <h3>🎬 Đưa MV Ca Nhạc Lên</h3>
+            </div>
+            <div class="drop-content" id="mvEmptyState">
+              <div class="upload-icon">🎥</div>
+              <p class="drop-text">Kéo thả MV ca nhạc vào đây hoặc</p>
+              <button type="button" class="btn-select" id="btnSelectMV">📂 Chọn MV Ca Nhạc</button>
+              <span class="file-hint">Hỗ trợ MP4, MOV, MKV, AVI hoặc MP3</span>
+            </div>
+            <div class="file-preview-box hidden" id="mvPreviewBox">
+              <video id="mvThumbnailVideo" controls muted preload="metadata"></video>
+              <div class="file-details">
+                <span class="file-name" id="mvFileName">mv_ca_nhac.mp4</span>
+                <span class="file-specs" id="mvFileSpecs">00:00 • 1920x1080</span>
+                <button type="button" class="btn-change" id="btnChangeMV">Thay file khác</button>
+              </div>
+            </div>
+            <input type="file" id="mvFileInput" accept="video/*,audio/*" class="visually-hidden">
+          </div>
+        </div>
+
+        <!-- Step 2: Customization Options -->
+        <div class="options-card">
+          <div class="card-header">
+            <span class="step-num">3</span>
+            <h3>✨ Tùy Chọn Hiệu Ứng Bìa &amp; Kiểu Ghép</h3>
+          </div>
+
+          <div class="options-body">
+            <!-- Effect Choice -->
+            <div class="option-group">
+              <label class="group-label">Hiệu ứng chuyển động trên trang bìa:</label>
+              <div class="effect-pills">
+                <label class="effect-pill active">
+                  <input type="radio" name="effectChoice" value="combo" checked>
+                  <span class="pill-icon">🎭</span>
+                  <span class="pill-text"><strong>Kết hợp Siêu Đẹp</strong><br><small>Zoom nhẹ + Nốt nhạc + Máy bay</small></span>
+                </label>
+                <label class="effect-pill">
+                  <input type="radio" name="effectChoice" value="notes">
+                  <span class="pill-icon">🎵</span>
+                  <span class="pill-text"><strong>Nốt Nhạc Bay</strong><br><small>Nốt nhạc uốn lượn mềm mại</small></span>
+                </label>
+                <label class="effect-pill">
+                  <input type="radio" name="effectChoice" value="airplane">
+                  <span class="pill-icon">✈️</span>
+                  <span class="pill-text"><strong>Máy Bay Lướt Gió</strong><br><small>Máy bay + vệt sao lấp lánh</small></span>
+                </label>
+                <label class="effect-pill">
+                  <input type="radio" name="effectChoice" value="sparkles">
+                  <span class="pill-icon">🌟</span>
+                  <span class="pill-text"><strong>Ánh Sao Lung Linh</strong><br><small>Bụi sao vàng &amp; đom đóm</small></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Merge Style & Audio -->
+            <div class="two-col-options">
+              <div class="option-field">
+                <label for="mergeModeSelect">Kiểu ghép MV:</label>
+                <select id="mergeModeSelect" class="styled-select">
+                  <option value="intro_prepend" selected>🌟 Bìa làm Đoạn Mở Đầu (Intro) -> Vào MV (Khuyên dùng)</option>
+                  <option value="picture_in_picture">🖼️ Khung hình nghệ thuật (Bìa làm nền, MV bên trong)</option>
+                </select>
+                <span class="field-tip">Bìa xuất hiện ở đầu video với hiệu ứng động, sau đó chuyển cảnh mượt mà vào MV ca nhạc.</span>
+              </div>
+
+              <div class="option-field">
+                <label for="audioChoiceSelect">Âm thanh lúc hiện bìa:</label>
+                <select id="audioChoiceSelect" class="styled-select">
+                  <option value="from_mv" selected>🎵 Lấy nhạc dạo từ đầu MV (Tự nhiên nhất)</option>
+                  <option value="chime">🎶 Chuông piano êm dịu tích hợp sẵn</option>
+                  <option value="silence">🔇 Không tiếng (Im lặng rồi vào nhạc)</option>
+                </select>
+                <span class="field-tip">Tiếng nhạc mở đầu giúp MV bắt đầu tự nhiên và chuyên nghiệp như phòng thu.</span>
+              </div>
+            </div>
+
+            <!-- Duration & Ken Burns slider -->
+            <div class="two-col-options">
+              <div class="option-field">
+                <div class="slider-label-row">
+                  <label for="introDurationRange">Thời lượng xuất hiện bìa:</label>
+                  <span class="slider-val" id="introDurationVal">4.0 giây</span>
+                </div>
+                <input type="range" id="introDurationRange" min="2.0" max="8.0" step="0.5" value="4.0" class="styled-range">
+              </div>
+
+              <div class="option-field toggle-field">
+                <label class="toggle-container">
+                  <input type="checkbox" id="kenBurnsCheck" checked>
+                  <span class="toggle-slider"></span>
+                  <span class="toggle-label">
+                    <strong>🎬 Zoom điện ảnh (Ken Burns)</strong>
+                    <small>Ảnh bìa từ từ phóng to nhẹ, tạo cảm giác sống động nhưng vẫn giữ nguyên vẹn 100% trang bìa.</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Big Master Action Button -->
+        <div class="action-btn-container">
+          <button type="button" class="btn-create-mv" id="btnCreateMV">
+            <span class="btn-glow"></span>
+            <span class="btn-content">
+              <span class="btn-icon">🚀</span>
+              <span class="btn-title">BẤM VÀO ĐÂY ĐỂ TẠO MV HOÀN THIỆN</span>
+            </span>
+          </button>
+          <p class="btn-note">⚡ Xử lý tự động chuẩn màu H.264 / AAC tương thích 100% với mọi thiết bị</p>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Live Interactive Preview & Results -->
+      <section class="preview-panel">
+        
+        <!-- Live Visual Preview of Animated Cover -->
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <div class="title-with-pulse">
+              <span class="live-dot"></span>
+              <h3>XEM TRƯỚC HIỆU ỨNG TRANG BÌA</h3>
+            </div>
+            <span class="preview-badge" id="previewBadge">Hiệu ứng trực tiếp</span>
+          </div>
+
+          <div class="canvas-wrapper">
+            <canvas id="previewCanvas" width="640" height="360"></canvas>
+            <div class="canvas-placeholder" id="canvasPlaceholder">
+              <span class="ph-icon">✨</span>
+              <p>Hãy tải ảnh bìa lên ở Bước 1.<br>Hiệu ứng nốt nhạc &amp; máy bay sẽ trình diễn ngay tại đây!</p>
+            </div>
+          </div>
+
+          <div class="preview-controls">
+            <span class="preview-hint">💡 Bìa sẽ chuyển động nhẹ nhàng như trên khi ghép vào MV của bạn.</span>
+            <button type="button" class="btn-preview-restart" id="btnRestartPreview" title="Khởi động lại hiệu ứng">🔄 Xem lại</button>
+          </div>
+        </div>
+
+        <!-- Progress Box -->
+        <div class="progress-card hidden" id="progressCard">
+          <div class="progress-header">
+            <h4>ĐANG TẠO MV HOÀN THIỆN...</h4>
+            <span class="progress-pct" id="progressPctText">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+          </div>
+          <p class="progress-status-msg" id="progressStatusMsg">Đang khởi động...</p>
+        </div>
+
+        <!-- Finished Result Card -->
+        <div class="result-card hidden" id="resultCard">
+          <div class="result-header">
+            <div class="success-badge">🎉 MV ĐÃ HOÀN THÀNH XUẤT SẮC!</div>
+          </div>
+          <div class="video-result-box">
+            <video id="finalVideoPlayer" controls playsinline></video>
+          </div>
+          <div class="result-actions">
+            <a id="btnDownloadMV" href="#" class="btn-action btn-download">
+              <span class="btn-act-icon">⬇️</span>
+              <span>TẢI MV VỀ MÁY</span>
+            </a>
+            <button type="button" class="btn-action btn-open-folder" id="btnOpenFolder">
+              <span class="btn-act-icon">📁</span>
+              <span>MỞ THƯ MỤC CHỨA FILE</span>
+            </button>
+          </div>
+          <p class="save-path-text" id="savePathText">Đã lưu hoàn tất!</p>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer with Author Information -->
+    <footer class="app-footer">
+      <div style="background: rgba(18, 13, 34, 0.75); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 20px 24px; max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center;">
+        <p style="font-size: 15px; font-weight: 800; color: #fcd34d; margin: 0;">
+          🎵 STUDIO GHÉP BÌA MV CA NHẠC CHUYÊN NGHIỆP
+        </p>
+        <p style="font-size: 14px; color: #f8fafc; margin: 0;">
+          Tác giả: <strong>Trịnh Thị An</strong> • Số điện thoại / Zalo: 
+          <a href="https://zalo.me/0834133344" target="_blank" rel="noopener" style="color: #38bdf8; font-weight: 800; text-decoration: underline; margin-left: 4px;">
+            0834 133 344
+          </a>
+        </p>
+        <p style="font-size: 12px; color: #94a3b8; margin: 0;">
+          Bản quyền © Trịnh Thị An • Trang web hoạt động trực tuyến trên GitHub Pages • Dễ dàng truy cập từ máy tính cơ quan, máy tính cá nhân và điện thoại
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
